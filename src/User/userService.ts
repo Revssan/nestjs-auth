@@ -13,9 +13,9 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async createUser(username: string, password: string): Promise<User> {
+  async createUser(username: string, password: string, Role:string): Promise<User> {
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = this.userRepository.create({ username, passwordHash });
+    const user = this.userRepository.create({ username, passwordHash, Role});
     return this.userRepository.save(user);
   }
 
