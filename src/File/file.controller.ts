@@ -18,9 +18,9 @@ import { Roles } from 'src/Roles/roles.decorator.ts';
   export class FilesController {
     constructor(private readonly filesService: FilesService) {}
   
-    @UseGuards(JwtAuthGuard)
-    @UseGuards(RolesGuard)
-    @Roles('User')
+    @UseGuards(JwtAuthGuard,RolesGuard)
+    //@UseGuards(RolesGuard)
+    @Roles('Admin')
     @Post('upload')
     @UseInterceptors(
       FileInterceptor('file', {
